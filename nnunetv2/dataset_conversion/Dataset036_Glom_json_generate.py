@@ -133,7 +133,7 @@ if __name__ == '__main__':
         join(nnUNet_raw, dataset_name),
         {0: 'Nuclei', 1: 'amino', 2: 'carbon-hydrates'},
         {"background": 0, "Nuc": 1, "GBM": 2, "Cap": 3},
-        2,
+        2,   # would change with training sample nums.
         '.tif',
         None,
         'Glom',
