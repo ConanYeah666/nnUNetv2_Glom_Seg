@@ -1,3 +1,5 @@
+$ nnUNetv2_train 36 3d_fullres all --npz
+
 
 #######################################################################
 Please cite the following paper when using nnU-Net:
