@@ -80,7 +80,7 @@ if __name__ == '__main__':
     # The spacing on the website is given in the wrong axis order. Great.
 
     '''
-    Spacaing could
+    Spacaing is based on the scale of image. Could find it in ImageJ Fiji > Image > Properties with X, Y, Z spacing. 
     '''
     spacing = (1, 0.2136657, 0.2136657)
 
