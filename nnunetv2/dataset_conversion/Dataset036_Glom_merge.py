@@ -4,8 +4,8 @@ import numpy as np
 
 if __name__ == '__main__':
 
-    path = '/Users/17914/phd/nnUNet-master/nnunetv2/media/fabian/nnUNet_raw/label/'
-    t_path = '/Users/17914/phd/nnUNet-master/nnunetv2/media/fabian/nnUNet_raw/label_new/'
+    path = '/m-ent1/ent1/zucksliu/Glom-Segmnentation/media/fabian/label_gt_51frames/'
+    t_path = '/m-ent1/ent1/zucksliu/Glom-Segmnentation/media/fabian/labelTr/'
     i = 2
     for i in range(2, 7):
         F0 = 'Glom ' + str(i) + ' Nuc.tif'
