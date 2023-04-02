@@ -14,6 +14,8 @@ from nnunetv2.utilities.dataset_name_id_conversion import maybe_convert_to_datas
 from nnunetv2.utilities.find_class_by_name import recursive_find_python_class
 from torch.backends import cudnn
 
+from training.nnUNetTrainer.variants.training_length.nnUNetTrainer_Xepochs import nnUNetTrainer
+
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 
 
@@ -33,7 +35,7 @@ def find_free_network_port() -> int:
 def get_trainer_from_args(dataset_name_or_id: Union[int, str],
                           configuration: str,
                           fold: int,
-                          trainer_name: str = 'nnUNetTrainer',
+                          trainer_name: str = 'nnUNetTrainer_20epochs',
                           plans_identifier: str = 'nnUNetPlans',
                           use_compressed: bool = False,
                           device: torch.device = torch.device('cuda')):
@@ -69,7 +71,7 @@ def get_trainer_from_args(dataset_name_or_id: Union[int, str],
     return nnunet_trainer
 
 
-def maybe_load_checkpoint(nnunet_trainer: nnUNetTrainer, continue_training: bool, validation_only: bool,
+def maybe_load_checkpoint(nnunet_trainer: nnUNetTrainer_20epochs, continue_training: bool, validation_only: bool,
                           pretrained_weights_file: str = None):
     if continue_training:
         expected_checkpoint_file = join(nnunet_trainer.output_folder, 'checkpoint_final.pth')
@@ -130,7 +132,7 @@ def run_ddp(rank, dataset_name_or_id, configuration, fold, tr, p, use_compressed
 
 def run_training(dataset_name_or_id: Union[str, int],
                  configuration: str, fold: Union[int, str],
-                 trainer_class_name: str = 'nnUNetTrainer',
+                 trainer_class_name: str = 'nnUNetTrainer_20epochs',
                  plans_identifier: str = 'nnUNetPlans',
                  pretrained_weights: Optional[str] = None,
                  num_gpus: int = 1,

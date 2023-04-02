@@ -5,12 +5,12 @@ from batchgenerators.utilities.file_and_folder_operations import *
 
 if __name__ == '__main__':
 
-    path = '/Users/17914/phd/nnUNet-master/nnunetv2/media/fabian/nnUNet_results/Dataset036_Glom/nnUNetTrainer__nnUNetPlans__3d_fullres/testres_2/'
-    t_path = '/Users/17914/phd/testres_2_255/'
+    path = '/Users/17914/phd/Cascade_Tr5_Ts234/'
+    t_path = '/Users/17914/phd/Cascade_Tr5_Ts234_255/'
     maybe_mkdir_p(t_path)
     images = subfiles(path, suffix='.tif', sort=True, join=False)
     for i, im in enumerate(images):
-        target_name = '255_' + im
+        target_name = '255_cascade' + im
         cur_tif = tif.imread(path + im)
         im_0 = np.zeros_like(cur_tif)
         im_1 = np.zeros_like(cur_tif)
