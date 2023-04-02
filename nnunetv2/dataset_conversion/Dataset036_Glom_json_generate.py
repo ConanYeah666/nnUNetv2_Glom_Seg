@@ -52,7 +52,7 @@ import shutil
 if __name__ == '__main__':
 
     dataset_name = 'Dataset036_Glom'
-    cur_path = '/Users/17914/phd/nnUNet-master/nnunetv2/'
+    cur_path = '/m-ent1/ent1/zucksliu/Glom-Segmnentation/media/fabian'
 
     imagestr = join(nnUNet_raw, dataset_name, 'imagesTr')
     imagests = join(nnUNet_raw, dataset_name, 'imagesTs')
@@ -65,10 +65,10 @@ if __name__ == '__main__':
 
     # we extract the downloaded train and test datasets to two separate folders and name them Fluo-C3DH-A549-SIM_train
     # and Fluo-C3DH-A549-SIM_test
-    train_source = cur_path + 'media/fabian/nnUNet_raw/train/'
-    test_source = cur_path + 'media/fabian/nnUNet_raw/test/'
-    lbTr_path = cur_path + 'media/fabian/nnUNet_raw/labelTr/'
-    lbTs_path = cur_path + 'media/fabian/nnUNet_raw/labelTs/'
+    train_source = cur_path + '/train/'
+    test_source = cur_path + '/test/'
+    lbTr_path = cur_path + '/labelTr/'
+    lbTs_path = cur_path + '/labelTs/'
 
     # with the old nnU-Net we had to convert all the files to nifti. This is no longer required. We can just copy the
     # tif files
@@ -132,15 +132,15 @@ if __name__ == '__main__':
     generate_dataset_json(
         join(nnUNet_raw, dataset_name),
         {0: 'Nuclei', 1: 'amino', 2: 'carbon-hydrates'},
-        {"background": 0, "GBM": 1, "Cap": 2},
-        5,   # would change with training sample nums.
+        {"background": 0, "Nuc":1 ,"GBM": 2, "Cap": 3},
+        3,   # would change with training sample nums.
         '.tif',
         None,
         'Glom',
         None,
-        '3/31/2023',
+        '4/2/2023',
         'Kenan Ye',
-        'Glom segmentation_CapGBM',
+        'Glom segmentation',
         'Tiff3DIO',
     )
     print('Complete!')
