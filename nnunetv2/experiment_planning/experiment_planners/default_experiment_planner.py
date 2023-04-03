@@ -60,7 +60,7 @@ class ExperimentPlanner(object):
         self.UNet_blocks_per_stage_decoder = (2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2)
         self.UNet_min_batch_size = 2
         self.UNet_max_features_2d = 512
-        self.UNet_max_features_3d = 320
+        self.UNet_max_features_3d = 256
 
         self.lowres_creation_threshold = 0.25  # if the patch size of fullres is less than 25% of the voxels in the
         # median shape then we need a lowres config as well
