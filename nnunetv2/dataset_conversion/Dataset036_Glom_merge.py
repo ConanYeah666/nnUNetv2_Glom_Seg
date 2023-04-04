@@ -1,26 +1,29 @@
+import os
+
 import tifffile as tif
 from PIL import Image
 import numpy as np
+from batchgenerators.utilities.file_and_folder_operations import subfiles
 
 if __name__ == '__main__':
 
-    path = '/m-ent1/ent1/zucksliu/Glom-Segmnentation/media/fabian/label_gt_51frames/'
-    t_path = '/m-ent1/ent1/zucksliu/Glom-Segmnentation/media/fabian/labelTr/'
-    i = 2
-    for i in range(2, 5):
-        F0 = 'Glom ' + str(i) + ' Nuc.tif'
-        F1 = 'Glom ' + str(i) + ' GBM.tif'
-        F2 = 'Glom ' + str(i) + ' Capsule.tif'
-        # Load a TIFF file
-        threshold = 250
-        F0_image = tif.imread(path + F0)
-        F1_image = tif.imread(path + F1)
-        F2_image = tif.imread(path + F2)
-        new_im = np.zeros_like(F1_image)
-        new_im[F0_image > threshold] = 1
-        new_im[F1_image > threshold] = 2
-        new_im[F2_image > threshold] = 3
-        print(new_im.shape)
-        zero_im = new_im[:, :, :]
-        print(zero_im[zero_im > 0])
-        tif.imwrite(t_path + 'Glom_' + str(i) + '_label.tif', new_im)
+    path = '/data/zucksliu/Glom-Segmnentation/media/fabian/label_gt_FullStack/'
+    t_path = '/data/zucksliu/Glom-Segmnentation/media/fabian/labelTr/'
+    threshold = 250
+    images = subfiles(path, suffix='.tif', sort=True, join=False)
+    for i, im in enumerate(images):
+        cur_tif = tif.imread(path + im)
+        num_channels = cur_tif.shape[1]
+        im_new = np.zeros_like(cur_tif[:, 0, :, :])
+        single_channel_tif = cur_tif[:, 3, :, :]
+        im_new[single_channel_tif > threshold] = 5
+        single_channel_tif = cur_tif[:, 0, :, :]
+        im_new[single_channel_tif > threshold] = 4
+        single_channel_tif = cur_tif[:, 2, :, :]
+        im_new[single_channel_tif > threshold] = 3
+        single_channel_tif = cur_tif[:, 1, :, :]
+        im_new[single_channel_tif > threshold] = 2
+        single_channel_tif = cur_tif[:, 4, :, :]
+        im_new[single_channel_tif > threshold] = 1
+        output_path = os.path.join(t_path, im)
+        tif.imwrite(output_path, im_new)

@@ -51,8 +51,8 @@ import shutil
 
 if __name__ == '__main__':
 
-    dataset_name = 'Dataset036_Glom'
-    cur_path = '/m-ent1/ent1/zucksliu/Glom-Segmnentation/media/fabian'
+    dataset_name = 'Dataset037_GlomFullStack'
+    cur_path = '/data/zucksliu/Glom-Segmnentation/media/fabian'
 
     imagestr = join(nnUNet_raw, dataset_name, 'imagesTr')
     imagests = join(nnUNet_raw, dataset_name, 'imagesTs')
@@ -69,6 +69,7 @@ if __name__ == '__main__':
     test_source = cur_path + '/test/'
     lbTr_path = cur_path + '/labelTr/'
     lbTs_path = cur_path + '/labelTs/'
+
 
     # with the old nnU-Net we had to convert all the files to nifti. This is no longer required. We can just copy the
     # tif files
