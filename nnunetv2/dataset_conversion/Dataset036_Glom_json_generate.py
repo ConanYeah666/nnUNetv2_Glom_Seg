@@ -132,14 +132,14 @@ if __name__ == '__main__':
     print('Generating data json ...')
     generate_dataset_json(
         join(nnUNet_raw, dataset_name),
-        {0: 'Nuclei', 1: 'amino', 2: 'carbon-hydrates'},
-        {"background": 0, "Nuc":1 ,"GBM": 2, "Cap": 3},
+        {0: 'Nuclei', 1: 'Amine/Proteins', 2: 'carbon-hydrates'},
+        {"background": 0, "Nuc": 1, "GBM": 2, "Cap": 3, "Blood Space": 4, "Bowman's Space": 5},
         3,   # would change with training sample nums.
         '.tif',
         None,
         'Glom',
         None,
-        '4/2/2023',
+        '4/3/2023',
         'Kenan Ye',
         'Glom segmentation',
         'Tiff3DIO',
